@@ -54,6 +54,7 @@
         android:layout_marginStart="52dp"
         android:layout_marginTop="56dp"
         android:text="Registrarse"
+        android:onClick="registrarse"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName2" />
 
@@ -64,6 +65,7 @@
         android:layout_marginTop="56dp"
         android:layout_marginEnd="48dp"
         android:text="Ingresar"
+        android:onClick="ingresar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName2" />
 
