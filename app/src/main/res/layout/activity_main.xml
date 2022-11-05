@@ -41,7 +41,7 @@
         android:layout_marginTop="35dp"
         android:layout_marginEnd="101dp"
         android:ems="10"
-        android:hint="Contrasenia"
+        android:hint="Contraseña"
         android:inputType="textPassword"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
