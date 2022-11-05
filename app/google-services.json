@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "443397425473",
+    "project_id": "obligatorioandroid-466dc",
+    "storage_bucket": "obligatorioandroid-466dc.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:443397425473:android:69f22c0e4b35ca7b86f9c0",
+        "android_client_info": {
+          "package_name": "com.example.obligatorioandroid"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "443397425473-ufp99ddohk381lce757nos5fj13ljlf8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDPHZbZAl91fq3xIQyYGh70MCHUZ7XyFIg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "443397425473-ufp99ddohk381lce757nos5fj13ljlf8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
