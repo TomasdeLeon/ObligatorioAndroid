@@ -3,6 +3,7 @@ package com.example.obligatorioandroid;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -71,6 +72,8 @@ public class MainActivity extends AppCompatActivity {
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if (task.isSuccessful()){
                         Toast.makeText(MainActivity.this, "Login exitoso", Toast.LENGTH_SHORT).show();
+                        Intent i = new Intent(MainActivity.this, BuscadorLibros.class);
+                        startActivity(i);
                     }
                     else {
                         Toast.makeText(MainActivity.this, "Login fallido", Toast.LENGTH_SHORT).show();
