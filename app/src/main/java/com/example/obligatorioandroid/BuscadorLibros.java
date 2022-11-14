@@ -6,6 +6,8 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -33,24 +35,36 @@ public class BuscadorLibros extends AppCompatActivity {
         txtLibroAutor = findViewById(R.id.txtLibroAutor);
         txtLibroEditorial = findViewById(R.id.txtLibroEditorial);
 
+        spinnerTipo = findViewById(R.id.spinnerTipo);
+        String[] tipo = {"Libro", "Revista"};
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item, tipo);
+        spinnerTipo.setAdapter(adapter);
+
         conexion = (ConnectivityManager) getSystemService(CONNECTIVITY_SERVICE);
         infoRed = conexion.getActiveNetworkInfo();
 
     }
 
     public void buscar(View view) {
-        String selec= spinnerTipo.getSelectedItem().toString();
-            if(selec.equals("Libro")){
-                    String consulta = txtConsulta.getText().toString();
-                    new BuscadorTask(txtLibroTitulo, txtLibroAutor, txtLibroEditorial).execute(consulta);
-                }
-            else
-                if(selec.equals("Revista")){
-                    if(infoRed != null && infoRed.isConnected()) {
+        if(infoRed != null && infoRed.isConnected()){
+
+            spinnerTipo.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                @Override
+                public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+
+                    String selec= spinnerTipo.getSelectedItem().toString();
+                    if (selec.equals("Libro")) {
                         String consulta = txtConsulta.getText().toString();
                         new BuscadorTask(txtLibroTitulo, txtLibroAutor, txtLibroEditorial).execute(consulta);
                     }
-            }
+                }
+
+                @Override
+                public void onNothingSelected(AdapterView<?> adapterView) {
+                    //no hacemos nada
+                }
+            });
+        }
         else {
             Toast.makeText(this,"Sin conexion a la red",Toast.LENGTH_SHORT).show();
         }
