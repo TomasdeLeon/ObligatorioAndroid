@@ -27,7 +27,6 @@ public class BuscadorTask extends AsyncTask<String,Void,String> {
         this.txtLibroTitulo = txtLibroTitulo;
         this.txtLibroAutor = txtLibroAutor;
         this.txtLibroEditorial = txtLibroEditoral;
-        this.spinnerTipo = spinnerTipo;
     }
 
     @Override
@@ -48,7 +47,7 @@ public class BuscadorTask extends AsyncTask<String,Void,String> {
             Uri builtURI = Uri.parse(FORECAST_BASE_URL).buildUpon()
                     .appendQueryParameter(QUERY_PARAM, strings[0])
                     .appendQueryParameter(MAX_RESULTS, "1")
-                    .appendQueryParameter(PRINT_TYPE, "book")
+                    .appendQueryParameter(PRINT_TYPE, "books")
                     .build();
 
             URL requestURL = new URL(builtURI.toString());
