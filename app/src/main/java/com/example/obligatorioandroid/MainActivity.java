@@ -72,7 +72,7 @@ public class MainActivity extends AppCompatActivity {
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if (task.isSuccessful()){
                         Toast.makeText(MainActivity.this, "Login exitoso", Toast.LENGTH_SHORT).show();
-                        Intent i = new Intent(MainActivity.this, BuscadorLibros.class);
+                        Intent i = new Intent(MainActivity.this, MenuPrincipal.class);
                         startActivity(i);
                     }
                     else {
