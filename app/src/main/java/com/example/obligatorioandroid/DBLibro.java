@@ -1,8 +1,13 @@
 package com.example.obligatorioandroid;
 
+import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class DBLibro extends DBConexion{
 
@@ -42,5 +47,37 @@ public class DBLibro extends DBConexion{
 
         return res;
 
+    }
+
+    @SuppressLint("Range")
+    private Libro cursorToObject(Cursor cursor){
+        Libro libro = new Libro();
+
+        libro.setLibroId(cursor.getInt(cursor.getColumnIndex(Libro.Libro_Id)));
+        libro.setTxtLibroTitulo(cursor.getString(cursor.getColumnIndex(Libro.Libro_Titulo)));
+        libro.setTxtLibroAutor(cursor.getString(cursor.getColumnIndex(Libro.Libro_Autor)));
+
+        return libro;
+    }
+
+
+    public List<Libro> getAll(){
+        List<Libro> lista = new ArrayList<Libro>();
+        SQLiteDatabase db = openRead();
+        Cursor cursor = db.rawQuery("SELECT * FROM " + Libro.TABLA +
+                " WHERE " + Libro.Libro_Id + " = " + Usuario.Usuario_Correo, null);
+
+        if(cursor != null){
+            if(cursor.moveToFirst()){
+                do{
+                    Libro libro = cursorToObject(cursor);
+                    lista.add(libro);
+                }while (cursor.moveToNext());
+            }
+            cursor.close();
+        }
+        closeDb();
+
+        return lista;
     }
 }
