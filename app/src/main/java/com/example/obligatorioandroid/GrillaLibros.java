@@ -39,7 +39,6 @@ public class GrillaLibros extends AppCompatActivity {
 
     private void recargarLibrosDesdeDB() {
         DBLibro db = new DBLibro(getApplicationContext());
-
     }
 
     public void regresar(View view) {

@@ -1,7 +1,6 @@
 package com.example.obligatorioandroid;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -37,11 +36,14 @@ public class LibroRecyclerViewAdapter extends RecyclerView.Adapter<LibroRecycler
         holder.layoutItem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(view.getContext().getApplicationContext(), EditarLibro.class);
+                Intent intent = new Intent(view.getContext().getApplicationContext(), VerLibro.class);
                 Bundle bundle = new Bundle();
 
+                bundle.putString("ID", Integer.toString(currentItem.getLibroId()));
                 bundle.putString("Titulo", currentItem.getTxtLibroTitulo());
                 bundle.putString("Autor", currentItem.getTxtLibroAutor());
+                bundle.putString("Editorial", currentItem.getTxtLibroEditorial());
+                bundle.putString("Descripcion", currentItem.getTxtLibroDescripcion());
 
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 intent.putExtras(bundle);
