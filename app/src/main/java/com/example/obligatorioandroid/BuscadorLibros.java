@@ -13,6 +13,9 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -43,9 +46,11 @@ public class BuscadorLibros extends AppCompatActivity {
         txtResultado = findViewById(R.id.txtResultado);
 
         spinnerTipo = findViewById(R.id.spinnerTipo);
-        String[] tipo = {"books", "Revista"};
+        String[] tipo = {"books", "magazines"};
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item, tipo);
         spinnerTipo.setAdapter(adapter);
+
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
         conexion = (ConnectivityManager) getSystemService(CONNECTIVITY_SERVICE);
         infoRed = conexion.getActiveNetworkInfo();
@@ -54,8 +59,10 @@ public class BuscadorLibros extends AppCompatActivity {
 
     public void buscar(View view) {
         if(infoRed != null && infoRed.isConnected()) {
+            String tipoDocumento = spinnerTipo.getSelectedItem().toString();
+
             String consulta = txtConsulta.getText().toString();
-            new BuscadorTask(txtLibroTitulo, txtLibroAutor, txtLibroEditorial).execute(consulta);
+            new BuscadorTask(txtLibroTitulo, txtLibroAutor, txtLibroEditorial).execute(consulta, tipoDocumento);
         }
         else {
             Toast.makeText(this,"Sin conexion a la red",Toast.LENGTH_SHORT).show();

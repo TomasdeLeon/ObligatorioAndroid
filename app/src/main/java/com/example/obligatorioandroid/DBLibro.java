@@ -6,6 +6,9 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,10 +20,12 @@ public class DBLibro extends DBConexion{
 
     static final String CREATE_TABLA = "CREATE TABLE " + Libro.TABLA + "("
             + Libro.Libro_Id + " INTEGER PRIMARY KEY, "
+            + Libro.Libro_Usuario + " TEXT, "
             + Libro.Libro_Titulo + " TEXT, "
             + Libro.Libro_Autor + " TEXT, "
             + Libro.Libro_Editorial + " TEXT, "
-            + Libro.Libro_Descripcion + " TEXT);";
+            + Libro.Libro_Descripcion + " TEXT "
+            + Libro.Libro_Pagina + " TEXT);";
 
 
     public long insert(Libro libro){
@@ -61,11 +66,11 @@ public class DBLibro extends DBConexion{
     }
 
 
-    public List<Libro> getAll(){
+    public List<Libro> getAll(String mail){
         List<Libro> lista = new ArrayList<Libro>();
         SQLiteDatabase db = openRead();
         Cursor cursor = db.rawQuery("SELECT * FROM " + Libro.TABLA +
-                " WHERE " + Libro.Libro_Id + " = " + Usuario.Usuario_Correo, null);
+                " WHERE " + Libro.Libro_Usuario + " = " + mail, null);
 
         if(cursor != null){
             if(cursor.moveToFirst()){

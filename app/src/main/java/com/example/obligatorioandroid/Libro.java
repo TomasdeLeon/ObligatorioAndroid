@@ -3,29 +3,35 @@ package com.example.obligatorioandroid;
 public class Libro {
 
     private Integer libroId = 0;
+    private String libroUsuario;
     private String txtLibroTitulo = "";
     private String txtLibroAutor = "";
     private String txtLibroEditorial = "";
     private String txtLibroDescripcion = "";
+    private Integer libroPagina = 0;
 
     // Nombre de la tabla
     public static final String TABLA = "Libros";
 
     public static final String Libro_Id = "ID";
+    public static final String Libro_Usuario = "Usuario";
     public static final String Libro_Titulo = "Titulo";
     public static final String Libro_Autor = "Autor";
     public static final String Libro_Editorial = "Editorial";
     public static final String Libro_Descripcion = "Descripcion";
+    public static final String Libro_Pagina = "Pagina";
 
     public Libro(){
     }
 
-    public Libro (int libroId, String txtLibroTitulo, String txtLibroAutor, String txtLibroEditorial, String txtLibroDescripcion){
+    public Libro (int libroId, String libroUsuario, String txtLibroTitulo, String txtLibroAutor, String txtLibroEditorial, String txtLibroDescripcion, int libroPagina){
         this.libroId = libroId;
+        this.libroUsuario = libroUsuario;
         this.txtLibroTitulo = txtLibroTitulo;
         this.txtLibroAutor = txtLibroAutor;
         this.txtLibroEditorial = txtLibroEditorial;
         this.txtLibroDescripcion = txtLibroDescripcion;
+        this.libroPagina = libroPagina;
     }
 
     public void setLibroId(Integer libroId) {
@@ -66,5 +72,21 @@ public class Libro {
 
     public String getTxtLibroDescripcion() {
         return txtLibroDescripcion;
+    }
+
+    public void setLibroUsuario(String libroUsuario) {
+        this.libroUsuario = libroUsuario;
+    }
+
+    public String getLibroUsuario() {
+        return libroUsuario;
+    }
+
+    public void setLibroPagina(Integer libroPagina) {
+        this.libroPagina = libroPagina;
+    }
+
+    public Integer getLibroPagina() {
+        return libroPagina;
     }
 }

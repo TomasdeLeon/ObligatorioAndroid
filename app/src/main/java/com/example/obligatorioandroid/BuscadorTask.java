@@ -47,7 +47,7 @@ public class BuscadorTask extends AsyncTask<String,Void,String> {
             Uri builtURI = Uri.parse(FORECAST_BASE_URL).buildUpon()
                     .appendQueryParameter(QUERY_PARAM, strings[0])
                     .appendQueryParameter(MAX_RESULTS, "1")
-                    .appendQueryParameter(PRINT_TYPE, "books")
+                    .appendQueryParameter(PRINT_TYPE, strings[1])
                     .build();
 
             URL requestURL = new URL(builtURI.toString());
