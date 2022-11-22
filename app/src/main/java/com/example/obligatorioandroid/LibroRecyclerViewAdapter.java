@@ -31,7 +31,7 @@ public class LibroRecyclerViewAdapter extends RecyclerView.Adapter<LibroRecycler
     @Override
     public void onBindViewHolder(@NonNull ViewHolderLibros holder, int position) {
         Libro currentItem = listaItems.get(position);
-        holder.txtLibroTitulo.setText(currentItem.getTxtLibroAutor());
+        holder.txtLibroTitulo.setText(currentItem.getTxtLibroTitulo());
         holder.txtLibroAutor.setText(currentItem.getTxtLibroAutor());
         holder.layoutItem.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -39,11 +39,12 @@ public class LibroRecyclerViewAdapter extends RecyclerView.Adapter<LibroRecycler
                 Intent intent = new Intent(view.getContext().getApplicationContext(), VerLibro.class);
                 Bundle bundle = new Bundle();
 
-                bundle.putString("ID", Integer.toString(currentItem.getLibroId()));
                 bundle.putString("Titulo", currentItem.getTxtLibroTitulo());
                 bundle.putString("Autor", currentItem.getTxtLibroAutor());
                 bundle.putString("Editorial", currentItem.getTxtLibroEditorial());
                 bundle.putString("Descripcion", currentItem.getTxtLibroDescripcion());
+                bundle.putString("Pagina", Integer.toString(currentItem.getLibroPagina()));
+                bundle.putInt("ID", currentItem.getLibroId());
 
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 intent.putExtras(bundle);
@@ -67,8 +68,8 @@ public class LibroRecyclerViewAdapter extends RecyclerView.Adapter<LibroRecycler
         public ViewHolderLibros(@NonNull View itemView){
 
             super(itemView);
-            txtLibroTitulo = itemView.findViewById(R.id.txtLibroTitulo);
-            txtLibroAutor = itemView.findViewById(R.id.txtLibroAutor);
+            txtLibroTitulo = itemView.findViewById(R.id.txtitemTitulo);
+            txtLibroAutor = itemView.findViewById(R.id.txtitemAutor);
             layoutItem = itemView.findViewById(R.id.item_recyclerview_libro);
         }
     }

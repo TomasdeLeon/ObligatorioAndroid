@@ -10,7 +10,6 @@ import androidx.annotation.NonNull;
 public class DBConexion {
     private static final String TAG = DBConexion.class.getSimpleName().toString();
 
-    private static final int DATABASE_VERSION = 1;
     private static final String DATABASE_NAME = "ObligatorioAndroid.db";
 
     protected Context mContext;
@@ -42,7 +41,7 @@ public class DBConexion {
 
     protected static class DatabaseHelper extends SQLiteOpenHelper {
         public DatabaseHelper(Context context) {
-            super(context, DATABASE_NAME, null, DATABASE_VERSION);
+            super(context, DATABASE_NAME, null, 1);
         }
 
         @Override

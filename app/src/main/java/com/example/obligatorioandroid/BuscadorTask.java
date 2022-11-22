@@ -92,6 +92,7 @@ public class BuscadorTask extends AsyncTask<String,Void,String> {
                 String title = null;
                 String authors = null;
                 String publisher = null;
+                Integer pageCount = null;
 
                 //Itero en el array de libros hasta que encuentro uno con tituolo, autor y editorial
                 while (i < itemsArray.length() && (authors == null && title == null && publisher == null)) {
@@ -105,6 +106,7 @@ public class BuscadorTask extends AsyncTask<String,Void,String> {
                         title = volumeInfo.getString("title");
                         authors = volumeInfo.getString("authors");
                         publisher = volumeInfo.getString("publisher");
+                        pageCount = volumeInfo.getInt("pageCount");
                     } catch (Exception e) {
                         e.printStackTrace();
                     }

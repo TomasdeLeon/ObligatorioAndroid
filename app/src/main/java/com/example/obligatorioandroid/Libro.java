@@ -2,13 +2,13 @@ package com.example.obligatorioandroid;
 
 public class Libro {
 
-    private Integer libroId = 0;
+    private Integer libroId;
     private String libroUsuario;
-    private String txtLibroTitulo = "";
-    private String txtLibroAutor = "";
-    private String txtLibroEditorial = "";
-    private String txtLibroDescripcion = "";
-    private Integer libroPagina = 0;
+    private String txtLibroTitulo;
+    private String txtLibroAutor;
+    private String txtLibroEditorial;
+    private String txtLibroDescripcion;
+    private Integer libroPagina;
 
     // Nombre de la tabla
     public static final String TABLA = "Libros";
@@ -24,7 +24,7 @@ public class Libro {
     public Libro(){
     }
 
-    public Libro (int libroId, String libroUsuario, String txtLibroTitulo, String txtLibroAutor, String txtLibroEditorial, String txtLibroDescripcion, int libroPagina){
+    public Libro (Integer libroId, String libroUsuario, String txtLibroTitulo, String txtLibroAutor, String txtLibroEditorial, String txtLibroDescripcion, Integer libroPagina){
         this.libroId = libroId;
         this.libroUsuario = libroUsuario;
         this.txtLibroTitulo = txtLibroTitulo;

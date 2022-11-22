@@ -2,9 +2,11 @@ package com.example.obligatorioandroid;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -21,17 +23,20 @@ import java.util.List;
 
 public class BuscadorLibros extends AppCompatActivity {
 
+    private String mail = "";
+
+    private EditText tituloDB;
+    private EditText autorDB;
+    private EditText editorialDB;
     private EditText txtConsulta;
     private Spinner spinnerTipo;
-    private TextView txtLibroTitulo;
-    private TextView txtLibroAutor;
-    private TextView txtLibroEditorial;
-    private TextView txtResultado;
+    private EditText txtLibroTitulo;
+    private EditText txtLibroAutor;
+    private EditText txtLibroEditorial;
+    private EditText txtLibroPagina;
 
-    private List<Libro> libros = new ArrayList<>();
+    //private List<Libro> libros = new ArrayList<>();
 
-    ConnectivityManager conexion;
-    NetworkInfo infoRed;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,7 +48,10 @@ public class BuscadorLibros extends AppCompatActivity {
         txtLibroTitulo = findViewById(R.id.txtLibroTitulo);
         txtLibroAutor = findViewById(R.id.txtLibroAutor);
         txtLibroEditorial = findViewById(R.id.txtLibroEditorial);
-        txtResultado = findViewById(R.id.txtResultado);
+
+        tituloDB = findViewById(R.id.txtLibroTitulo);
+        autorDB = findViewById(R.id.txtLibroAutor);
+        editorialDB = findViewById(R.id.txtLibroEditorial);
 
         spinnerTipo = findViewById(R.id.spinnerTipo);
         String[] tipo = {"books", "magazines"};
@@ -51,13 +59,16 @@ public class BuscadorLibros extends AppCompatActivity {
         spinnerTipo.setAdapter(adapter);
 
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-
-        conexion = (ConnectivityManager) getSystemService(CONNECTIVITY_SERVICE);
-        infoRed = conexion.getActiveNetworkInfo();
+        if(user != null){
+            mail = user.getEmail();
+        }
 
     }
 
     public void buscar(View view) {
+        ConnectivityManager conexion = (ConnectivityManager) getSystemService(CONNECTIVITY_SERVICE);
+        NetworkInfo infoRed = conexion.getActiveNetworkInfo();
+
         if(infoRed != null && infoRed.isConnected()) {
             String tipoDocumento = spinnerTipo.getSelectedItem().toString();
 
@@ -69,31 +80,42 @@ public class BuscadorLibros extends AppCompatActivity {
         }
     }
 
+
+
     public void agregar(View view) {
-        String tituloLibro = txtLibroTitulo.getText().toString();
-        String autorLibro = txtLibroAutor.getText().toString();
-        String editorialLibro = txtLibroEditorial.getText().toString();
-
+        String tituloLibro = tituloDB.getText().toString();
+        String autorLibro = autorDB.getText().toString();
+        String editorialLibro = editorialDB.getText().toString();
+        String mailUsuario = mail;
+        Integer pagina = 0;
         Libro libro = new Libro();
-        libro.setTxtLibroTitulo(tituloLibro);
-        libro.setTxtLibroAutor(autorLibro);
-        libro.setTxtLibroEditorial(editorialLibro);
 
-        DBLibro dbLibro = new DBLibro(getApplicationContext());
-        long valorResultado = dbLibro.insert(libro);
-        String mensaje;
+        if(TextUtils.isEmpty(tituloLibro) || TextUtils.isEmpty(autorLibro) || TextUtils.isEmpty(editorialLibro) || TextUtils.isEmpty(pagina.toString())){
+            Toast.makeText(this, "Error al cargar", Toast.LENGTH_SHORT).show();
+        } else{
+            libro.setLibroUsuario(mailUsuario);
+            libro.setTxtLibroTitulo(tituloLibro);
+            libro.setTxtLibroAutor(autorLibro);
+            libro.setTxtLibroEditorial(editorialLibro);
+            libro.setLibroPagina(pagina);
 
-        txtLibroTitulo.setText("");
-        txtLibroEditorial.setText("");
-        txtLibroAutor.setText("");
+            DBLibro dbLibro = new DBLibro(getApplicationContext());
+            long valorResultado = dbLibro.insert(libro);
 
-        if (valorResultado > 0) {
-            mensaje = "Se agregó con éxito el libro: " + valorResultado;
-        } else {
-            mensaje = "No se pudo agregar el libro solicitado.";
+            //txtLibroTitulo.setText("");
+            //txtLibroAutor.setText("");
+            //txtLibroEditorial.setText("");
+
+            if (valorResultado > 0) {
+                Toast.makeText(this, "Libro agregado exitosamente", Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(this, "No se pudo agregar el libro solicitado", Toast.LENGTH_SHORT).show();
+            }
         }
 
-        txtResultado.setText(mensaje);
+    }
 
+    public void volver(View view) {
+        finish();
     }
 }

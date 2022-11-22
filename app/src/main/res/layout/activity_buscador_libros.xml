@@ -25,38 +25,31 @@
         android:id="@+id/txtConsulta"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="99dp"
-        android:layout_marginTop="37dp"
-        android:layout_marginEnd="102dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="72dp"
         android:ems="10"
+        android:hint=""
         android:inputType="textPersonName"
-        android:hint="Título"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     <Spinner
         android:id="@+id/spinnerTipo"
-        android:layout_width="217dp"
-        android:layout_height="33dp"
-        android:layout_marginStart="1dp"
-        android:layout_marginTop="34dp"
-        android:layout_marginEnd="1dp"
+        android:layout_width="119dp"
+        android:layout_height="43dp"
+        android:layout_marginTop="72dp"
+        android:layout_marginEnd="16dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtConsulta" />
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     <Button
         android:id="@+id/button3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="155dp"
-        android:layout_marginTop="36dp"
-        android:layout_marginEnd="162dp"
-        android:text="Buscar"
+        android:layout_marginStart="284dp"
+        android:layout_marginTop="28dp"
         android:onClick="buscar"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        android:text="Buscar"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/spinnerTipo" />
 
@@ -64,62 +57,57 @@
         android:id="@+id/button4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="158dp"
-        android:layout_marginTop="48dp"
-        android:layout_marginEnd="159dp"
-        android:text="Agregar Libro"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="12dp"
         android:onClick="agregar"
+        android:text="Agregar Libro"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtLibroEditorial" />
 
-    <TextView
+    <EditText
         android:id="@+id/txtLibroTitulo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="176dp"
-        android:layout_marginTop="38dp"
-        android:layout_marginEnd="177dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="24dp"
+        android:ems="10"
+        android:inputType="textPersonName"
         android:text=""
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button3" />
 
-    <TextView
+    <EditText
         android:id="@+id/txtLibroAutor"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="174dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="179dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="9dp"
+        android:ems="10"
+        android:inputType="textPersonName"
         android:text=""
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.534"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtLibroTitulo" />
 
-    <TextView
+    <EditText
         android:id="@+id/txtLibroEditorial"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="176dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="177dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="16dp"
+        android:ems="10"
+        android:inputType="textPersonName"
         android:text=""
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtLibroAutor" />
 
-    <TextView
-        android:id="@+id/txtResultado"
+    <Button
+        android:id="@+id/button12"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="174dp"
-        android:layout_marginTop="48dp"
-        android:layout_marginEnd="179dp"
-        android:text=""
+        android:layout_marginTop="64dp"
+        android:layout_marginEnd="12dp"
+        android:onClick="volver"
+        android:text="Regresar"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.534"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button4" />
 </androidx.constraintlayout.widget.ConstraintLayout>
